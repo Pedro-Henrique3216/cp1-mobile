@@ -64,7 +64,6 @@ export default function App() {
       </div>
       
         <Button 
-          style={styles.button}
           title='Click'
           onPress={
           () => {
@@ -99,7 +98,6 @@ export default function App() {
         }
 
       <Button 
-        styles={styles.button}
         title='Limpar'
         onPress={ () => {
 
@@ -137,7 +135,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     paddingLeft: "10px"
   },
-  button: {
-    marginBottom: "10px"
-  }
+
 });
