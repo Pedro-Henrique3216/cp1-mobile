@@ -31,7 +31,7 @@ export default function App() {
         style={styles.image}
     />
       <div style={styles.campos}>
-        <Text>Nome</Text>
+        <Text>Nome do Produto</Text>
         <TextInput
             value={name}
             style={styles.input}
@@ -64,6 +64,7 @@ export default function App() {
       </div>
       
         <Button 
+          style={styles.button}
           title='Click'
           onPress={
           () => {
@@ -98,6 +99,7 @@ export default function App() {
         }
 
       <Button 
+        styles={styles.button}
         title='Limpar'
         onPress={ () => {
 
@@ -133,5 +135,9 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     borderWidth: "1px",
     borderColor: "black",
+    paddingLeft: "10px"
+  },
+  button: {
+    marginBottom: "10px"
   }
 });
