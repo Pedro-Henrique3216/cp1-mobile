@@ -29,8 +29,8 @@ export default function App() {
       <Image 
         source={require('./assets/images.png')} 
         style={styles.image}
-    />
-      <div style={styles.campos}>
+      />
+      <View style={styles.campos}>
         <Text>Nome do Produto</Text>
         <TextInput
             value={name}
@@ -39,55 +39,55 @@ export default function App() {
             onChangeText={name => setName(name)}
             autoCapitalize='words'
             maxLength={30}
-            inputMode='text'
+            keyboardType='text'
           />
-      </div>
-      <div style={styles.campos}>
+      </View>
+      <View style={styles.campos}>
         <Text>Valor original do produto</Text>
         <TextInput 
           style={styles.input}
           placeholder='Digite o Valor original do produto'
           value={valor}
           onChangeText= {valor => setValor(valor)}
-          inputMode='numeric'
+          keyboardType='numeric'
         />
-      </div>
-      <div style={styles.campos}>
+      </View>
+      <View style={styles.campos}>
         <Text>Porcentagem</Text>
         <TextInput
             style={styles.input}
             value={porcentagem}
             placeholder="Digite a porcentagem"
             onChangeText={porcentagem => setPorcentagem(porcentagem)}
-            inputMode='numeric'
+            keyboardType='numeric'
           />
-      </div>
+      </View>
       
         <Button 
           title='Click'
           onPress={
           () => {
+            setErro(false)
             calculo = CalcularAumento(valor, porcentagem)
             setNovoValor(calculo)
             setClick(true)
-            if(name === ""){
+            if(porcentagem == 0){
               setErro(true)
-              setCampo("Campo nome invalido")
+              setCampo("Campo porcentagem invalido")
             }
-            if(valor === 0){
+            if(valor == 0){
               setErro(true)
               setCampo("Campo valor invalido")
             }
-            if(porcentagem === 0){
+            if(name == ""){
               setErro(true)
-              setCampo("Campo porcentagem invalido")
+              setCampo("Campo nome invalido")
             }
             
           }
           }
         />
-        
-        {click & error === false ? 
+        {click && error === false ? 
         <Result 
           nome={name} 
           valorOriginal={Number(valor) * 1} 
@@ -100,9 +100,9 @@ export default function App() {
       <Button 
         title='Limpar'
         onPress={ () => {
-
           limpar()
           setErro(false)
+          setCampo("")
         }
         }
       />
@@ -117,23 +117,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'lightblue'
   },
   error: {
-      color: "red",
-      fontWeight: "bold",
-      fontSize: "20px"
-  },
-  campos:  {
-    display: "flex",
-    gap: "10px",
-    margin: "10px"
-  },
-  input: {
-    justifyContent: "center",
-    alignItems: "stretch",
-    borderWidth: "1px",
-    borderColor: "black",
-    paddingLeft: "10px"
-  },
+    color: "red",
+    fontWeight: "bold",
+    fontSize: 20
+},
+campos:  {
+  display: "flex",
+  flexDirection: "row",
+  gap: 10,
+  margin: 10,
+  alignItems: "center",
+  textTransform: "uppercase",
+  fontWeight: "bold",
+},
+input: {
+  justifyContent: "center",
+  alignItems: "stretch",
+  borderColor: "black",
+  borderWidth: 1,
+  width: 200,
+  backgroundColor: "white", 
+},
 
 });
